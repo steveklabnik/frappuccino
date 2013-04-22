@@ -6,7 +6,9 @@ Functional Reactive Programming for Ruby.
 
 Add this line to your application's Gemfile:
 
-    gem 'frappuccino'
+```ruby
+gem 'frappuccino'
+```
 
 And then execute:
 
@@ -20,7 +22,7 @@ Or install it yourself as:
 
 Right this moment, just the initial example works:
 
-```
+```ruby
 require 'frappuccino'
 
 class Button
