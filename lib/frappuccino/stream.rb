@@ -15,6 +15,14 @@ module Frappuccino
       @values << event
     end
 
+    def events
+      @values
+    end
+
+    def has_event?(event)
+      @values.include? event
+    end
+
     def map(&blk)
       Map.new(self, &blk)
     end
