@@ -2,5 +2,7 @@ language: ruby
 rvm:
   - 2.0.0
   - 1.9.3
-  - rbx-19mode
+  - rbx-nightly-19mode
   - jruby-19mode
+allow_failures:
+  - rvm: rbx-nightly-19mode
