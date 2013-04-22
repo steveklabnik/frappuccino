@@ -27,14 +27,16 @@ require 'frappuccino'
 
 class Button
   def push
-    emit(1) # emit sends a value into the stream
+    emit(:pushed) # emit sends a value into the stream
   end
 end
 
 button = Button.new
 stream = Frappuccino::Stream.new(button)
 
-counter = stream.inject(0) {|sum, n| sum + n }
+counter = stream
+            .map {|event| event == :pushed ? 1 : 0 } # convert events to ints
+            .inject(0) {|sum, n| sum + n } # add them up
 
 counter.to_i # => 0
 
