@@ -1,5 +1,5 @@
 require 'frappuccino/source'
-require 'frappuccino/inject'
+require 'frappuccino/map'
 
 module Frappuccino
   class Stream
@@ -15,8 +15,8 @@ module Frappuccino
       @values << event
     end
 
-    def inject(start, &blk)
-      Inject.new(self, start, &blk)
+    def map(&blk)
+      Map.new(self, &blk)
     end
   end
 end
