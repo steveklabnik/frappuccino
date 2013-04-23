@@ -23,6 +23,16 @@ module Frappuccino
     def map(&blk)
       Map.new(self, &blk)
     end
+
+    def map_stream(hsh)
+      Map.new(self) do |event|
+        if hsh.has_key?(event)
+          hsh[event]
+        else
+          hsh[:default]
+        end
+      end
+    end
     
     def inject(start, &blk)
       Inject.new(self, start, &blk)

@@ -1,17 +1,5 @@
 require 'test_helper'
 
-class PlusOneButton
-  def push
-    emit(:plus_one)
-  end
-end
-
-class MinusOneButton
-  def push
-    emit(:minus_one)
-  end
-end
-
 describe "merging steams" do
   it "produces one stream with both sets of events" do
     button_one = Button.new
@@ -42,9 +30,9 @@ describe "merging steams" do
     counter = merged_stream
               .map do |event|
                 case event
-                when :plus_one
+                when :+
                   1
-                when :minus_one
+                when :-
                   -1
                 else
                   0
