@@ -5,8 +5,12 @@ module Frappuccino
   class Stream
     include Observable
     
-    def initialize(source)
-      source.extend(Frappuccino::Source).add_observer(self)
+    def initialize(sources)
+      sources = Array(sources)
+
+      sources.each do |source|
+        source.extend(Frappuccino::Source).add_observer(self)
+      end
     end
 
     def update(event)
@@ -20,6 +24,10 @@ module Frappuccino
     
     def inject(start, &blk)
       Inject.new(self, start, &blk)
+    end
+
+    def self.merge(stream_one, stream_two)
+      new([stream_one, stream_two])
     end
   end
   

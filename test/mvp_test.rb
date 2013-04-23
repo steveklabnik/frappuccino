@@ -2,12 +2,6 @@ require 'test_helper'
 
 require 'frappuccino'
 
-class Button
-  def push
-    emit(:pushed)
-  end
-end
-
 describe "MVP interaction" do
   it "can subscribe to an event stream" do
     button = Button.new
