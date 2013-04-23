@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Right this moment, just the initial example works:
+Basically, this:
 
 ```ruby
 require 'frappuccino'
@@ -49,6 +49,31 @@ counter.to_i # => 3
 button.push
 
 counter.to_i # => 4
+```
+
+You can also map via a hash, if you prefer:
+
+```ruby
+.map_stream(:pushed => 1, :default => 0)
+```
+
+Rather than convert via `#to_i`, which is pretty much a hack, you can register
+a callback to occur when a value hits the stream:
+
+```ruby
+stream.on_value do |event|
+  puts "I got a #{event}!"
+end
+```
+
+You can combine two streams together:
+
+```ruby
+merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+
+# or
+
+merged_stream = Frappuccino::Stream.new(button_one, button_two)
 ```
 
 ## Contributing
