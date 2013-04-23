@@ -22,21 +22,21 @@ module Frappuccino
     def inject(start, &blk)
       Inject.new(self, start, &blk)
     end
-    
-    private
-    
-    class Map < Stream
-      def initialize(source, &blk)
-        @block = blk
-        @source = source
-        
-        @source.add_observer(self)
-      end
+  end
   
-      def update(event)
-        changed
-        notify_observers(@block.call(event))
-      end
+  private 
+  
+  class Map < Stream
+    def initialize(source, &blk)
+      @block = blk
+      @source = source
+      
+      @source.add_observer(self)
+    end
+
+    def update(event)
+      changed
+      notify_observers(@block.call(event))
     end
   end
 end
