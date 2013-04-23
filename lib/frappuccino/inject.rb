@@ -3,19 +3,21 @@ module Frappuccino
     def initialize(source, start, &blk)
       @value = start
       @block = blk
-      @on_value = nil
+      @callbacks = []
       source.add_observer(self)
     end
-    
+
     def update(event)
       @value = @block.call(@value, event)
-      @on_value.call(@value) if @on_value
+      @callbacks.each do |callback|
+        callback.call(@value)
+      end
 
       @value
     end
 
     def on_value(&blk)
-      @on_value = blk
+      @callbacks << blk
     end
 
     def to_i
