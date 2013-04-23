@@ -38,6 +38,10 @@ module Frappuccino
       Inject.new(self, start, &blk)
     end
 
+    def select(&blk)
+      Select.new(self, &blk)
+    end
+
     def on_value(&blk)
       @on_value = blk
     end
@@ -58,6 +62,22 @@ module Frappuccino
     def update(event)
       changed
       notify_observers(@block.call(event))
+    end
+  end
+
+  class Select < Stream
+    def initialize(source, &blk)
+      @block = blk
+      source.add_observer(self)
+    end
+
+    def update(event)
+      result = @block.call(event)
+
+      if result
+        changed
+        notify_observers(result)
+      end
     end
   end
 end

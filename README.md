@@ -82,6 +82,17 @@ merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
 merged_stream = Frappuccino::Stream.new(button_one, button_two)
 ```
 
+You can select events from a stream, too:
+
+```ruby
+stream = Frappuccino::Stream.new(button, something_else)
+filtered_stream = stream.select{|event| event == :pushed }
+
+filtered_stream.on_value do |event|
+  # event will only ever be :pushed
+end
+```
+
 ## Contributing
 
 1. Fork it
