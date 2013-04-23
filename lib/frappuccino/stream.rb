@@ -16,7 +16,7 @@ module Frappuccino
     end
 
     def update(event)
-      @on_value.call if @on_value
+      @on_value.call(event) if @on_value
 
       changed
       notify_observers(event)

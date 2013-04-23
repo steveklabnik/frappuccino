@@ -5,14 +5,14 @@ describe "#on_value" do
     button = Button.new
     stream = Frappuccino::Stream.new(button)
 
-    clicked = false
+    event = false
 
     stream.on_value do |value|
-      clicked = true
+      event = value
     end
 
     button.push
 
-    assert clicked, "#on_value did not call back."
+    assert_equal :pushed, event, "#on_value did not call back."
   end
 end
