@@ -6,8 +6,7 @@ module Frappuccino
     include Observable
     
     def initialize(source)
-      @source = source.extend(Frappuccino::Source)
-      @source.add_observer(self)
+      source.extend(Frappuccino::Source).add_observer(self)
     end
 
     def update(event)
@@ -29,9 +28,7 @@ module Frappuccino
   class Map < Stream
     def initialize(source, &blk)
       @block = blk
-      @source = source
-      
-      @source.add_observer(self)
+      source.add_observer(self)
     end
 
     def update(event)

@@ -3,8 +3,6 @@ module Frappuccino
     def initialize(source, start, &blk)
       @value = start
       @block = blk
-      @source = source
-      
       source.add_observer(self)
     end
     
