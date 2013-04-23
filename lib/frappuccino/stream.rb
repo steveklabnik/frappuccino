@@ -10,11 +10,13 @@ module Frappuccino
         source.extend(Frappuccino::Source).add_observer(self)
       end
 
-      @on_value = nil
+      @callbacks = []
     end
 
     def update(event)
-      @on_value.call(event) if @on_value
+      @callbacks.each do |callback|
+        callback.call(event)
+      end
 
       changed
       notify_observers(event)
@@ -43,7 +45,7 @@ module Frappuccino
     end
 
     def on_value(&blk)
-      @on_value = blk
+      @callbacks << blk
     end
 
     def self.merge(stream_one, stream_two)

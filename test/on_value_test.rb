@@ -15,6 +15,27 @@ describe "#on_value" do
 
     assert_equal :pushed, event, "#on_value did not call back."
   end
+  
+  it "allows for multiple callbacks per Stream" do
+    button = Button.new
+    stream = Frappuccino::Stream.new(button)
+
+    callback1 = false
+    callback2 = false
+
+    stream.on_value do |value|
+      callback1 = value
+    end
+    
+    stream.on_value do |value|
+      callback2 = value
+    end
+
+    button.push
+
+    assert_equal :pushed, callback1, "#on_value did not call first callback"
+    assert_equal :pushed, callback2, "#on_value did not call second callback"
+  end
 
   it "works with inject" do
     button = Button.new
