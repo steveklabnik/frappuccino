@@ -19,7 +19,10 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install frappuccino
+    $ git clone https://github.com/steveklabnik/frappuccino
+    $ cd frappuccino
+    $ bundle
+    $ rake install
 
 ## Usage
 
