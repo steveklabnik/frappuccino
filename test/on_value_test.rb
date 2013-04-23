@@ -15,4 +15,21 @@ describe "#on_value" do
 
     assert_equal :pushed, event, "#on_value did not call back."
   end
+
+  it "works with inject" do
+    button = Button.new
+    stream = Frappuccino::Stream.new(button)
+
+    counter = stream.inject(0) {|sum, event| sum + 1 }
+
+    sum = 0
+
+    counter.on_value do |value|
+      sum = value
+    end
+
+    button.push
+
+    assert_equal 1, sum, "#on_value did not call back."
+  end
 end
