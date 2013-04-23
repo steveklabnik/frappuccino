@@ -1,13 +1,17 @@
 module Frappuccino
   class Inject
     def initialize(source, start, &blk)
-      @source = source
-      @start = start
+      @value = start
       @block = blk
+      source.add_observer(self)
+    end
+    
+    def update(event)
+      @value = @block.call(@value, event)
     end
 
     def to_i
-      @source.values.inject(@start, &@block)
+      @value
     end
   end
 end
