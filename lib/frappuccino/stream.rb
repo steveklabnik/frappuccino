@@ -5,9 +5,7 @@ module Frappuccino
   class Stream
     include Observable
     
-    def initialize(sources)
-      sources = Array(sources)
-
+    def initialize(*sources)
       sources.each do |source|
         source.extend(Frappuccino::Source).add_observer(self)
       end
@@ -35,7 +33,7 @@ module Frappuccino
     end
 
     def self.merge(stream_one, stream_two)
-      new([stream_one, stream_two])
+      new(stream_one, stream_two)
     end
   end
   
