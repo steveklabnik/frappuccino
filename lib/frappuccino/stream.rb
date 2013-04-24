@@ -58,15 +58,19 @@ module Frappuccino
   class Map < Stream
     def initialize(source, &blk)
       @block = blk
-      @on_value = nil
+      @callbacks = []
       source.add_observer(self)
     end
 
     def update(event)
-      @on_value.call(event) if @on_value
+      value = @block.call(event)
+
+      @callbacks.each do |callback|
+        callback.call(value)
+      end
 
       changed
-      notify_observers(@block.call(event))
+      notify_observers(value)
     end
   end
 
@@ -74,12 +78,15 @@ module Frappuccino
     def initialize(source, &blk)
       @block = blk
       @on_value = nil
+      @callbacks = []
       source.add_observer(self)
     end
 
     def update(event)
       if @block.call(event)
-        @on_value.call(event) if @on_value
+        @callbacks.each do |callback|
+          callback.call(event)
+        end
 
         changed
         notify_observers(event)

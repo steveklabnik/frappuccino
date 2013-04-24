@@ -17,3 +17,10 @@ class MinusOneButton
     emit(:-)
   end
 end
+
+class Points
+  def POINTS!
+    emit(:POINTS!)
+  end
+end
+
