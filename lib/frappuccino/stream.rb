@@ -9,8 +9,6 @@ module Frappuccino
       sources.each do |source|
         source.extend(Frappuccino::Source).add_observer(self)
       end
-
-      @callbacks = []
     end
 
     def update(event)
@@ -40,7 +38,7 @@ module Frappuccino
     end
 
     def on_value(&blk)
-      @callbacks << blk
+      callbacks << blk
     end
 
     def self.merge(stream_one, stream_two)
@@ -50,12 +48,16 @@ module Frappuccino
     protected
     
     def occur(value)
-      @callbacks.each do |callback|
+      callbacks.each do |callback|
         callback.call(value)
       end
 
       changed
       notify_observers(value)
+    end
+    
+    def callbacks
+      @callbacks ||= []
     end
   end
   
@@ -64,7 +66,6 @@ module Frappuccino
   class Map < Stream
     def initialize(source, &blk)
       @block = blk
-      @callbacks = []
       source.add_observer(self)
     end
 
@@ -76,7 +77,6 @@ module Frappuccino
   class Select < Stream
     def initialize(source, &blk)
       @block = blk
-      @callbacks = []
       source.add_observer(self)
     end
 
