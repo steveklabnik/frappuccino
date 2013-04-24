@@ -58,10 +58,13 @@ module Frappuccino
   class Map < Stream
     def initialize(source, &blk)
       @block = blk
+      @on_value = nil
       source.add_observer(self)
     end
 
     def update(event)
+      @on_value.call(event) if @on_value
+
       changed
       notify_observers(@block.call(event))
     end
@@ -70,13 +73,14 @@ module Frappuccino
   class Select < Stream
     def initialize(source, &blk)
       @block = blk
+      @on_value = nil
       source.add_observer(self)
     end
 
     def update(event)
-      result = @block.call(event)
+      if @block.call(event)
+        @on_value.call(event) if @on_value
 
-      if result
         changed
         notify_observers(event)
       end
