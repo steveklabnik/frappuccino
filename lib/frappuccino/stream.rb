@@ -78,7 +78,7 @@ module Frappuccino
 
       if result
         changed
-        notify_observers(result)
+        notify_observers(event)
       end
     end
   end
