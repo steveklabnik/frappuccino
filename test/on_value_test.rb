@@ -36,6 +36,42 @@ describe "#on_value" do
     assert_equal :pushed, callback1, "#on_value did not call first callback"
     assert_equal :pushed, callback2, "#on_value did not call second callback"
   end
+  
+  it "works with mapped Streams" do
+    button = Button.new
+    stream = Frappuccino::Stream.new(button)
+    
+    callback = false
+    
+    stream.map { |val| :true }.on_value do |val|
+      callback = val
+    end
+    
+    button.push
+    
+    assert_equal :true, callback, "#on_value did not call back."
+  end
+  
+  it "works with filtered Streams" do
+    button = Button.new
+    stream = Frappuccino::Stream.new(button)
+    
+    callback = false
+    should = true
+    
+    stream.select { |val| should }.on_value do |val|
+      callback = val
+    end
+    
+    button.push
+    assert_equal :pushed, callback, "#on_value did not call back."
+    
+    should = false
+    callback = :didnot
+    button.push
+    
+    assert_equal :didnot, callback, "#on_value did call back."
+  end
 
   it "works with inject" do
     button = Button.new
