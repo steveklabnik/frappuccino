@@ -23,23 +23,9 @@ describe "#select" do
       total = event
     end
 
-    points.POINTS!
-    points.POINTS!
-    points.POINTS!
-    points.POINTS!
-    points.POINTS!
-    points.POINTS!
-    points.POINTS!
-    points.POINTS!
-    points.POINTS!
+    9.times { points.POINTS! }
 
-    button.push
-    button.push
-    button.push
-    button.push
-    button.push
-    button.push
-    button.push
+    9.times { button.push }
 
     assert_equal 9, total
   end

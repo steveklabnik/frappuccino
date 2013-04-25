@@ -17,6 +17,5 @@ describe "#map_stream" do
 
     plus_button.push
     assert_equal 1, counter.to_i
-
   end
 end
