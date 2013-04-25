@@ -2,6 +2,8 @@
 
 Functional Reactive Programming for Ruby.
 
+[![Build Status](https://travis-ci.org/steveklabnik/frappuccino.png?branch=master)](https://travis-ci.org/steveklabnik/frappuccino) [![Code Climate](https://codeclimate.com/github/steveklabnik/frappuccino.png)](https://codeclimate.com/github/steveklabnik/frappuccino) [![Coverage Status](https://coveralls.io/repos/steveklabnik/frappuccino/badge.png?branch=master)](https://coveralls.io/r/steveklabnik/frappuccino) 
+
 ## Installation
 
 Add this line to your application's Gemfile:

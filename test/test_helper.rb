@@ -1,5 +1,8 @@
 require 'minitest/autorun'
 
+require 'coveralls'
+Coveralls.wear!
+
 class Button
   def push
     emit(:pushed)
