@@ -48,14 +48,10 @@ describe "merging steams" do
     minus_button.push
     assert_equal 0, counter.to_i
 
-    minus_button.push
-    minus_button.push
+    2.times { minus_button.push }
     assert_equal(-2, counter.to_i)
 
-    plus_button.push
-    plus_button.push
-    plus_button.push
-    plus_button.push
+    4.times { plus_button.push }
     assert_equal 2, counter.to_i
   end
 end

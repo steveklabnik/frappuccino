@@ -13,14 +13,10 @@ describe "MVP interaction" do
 
     assert_equal 0, counter.to_i
 
-    button.push
-    button.push
-    button.push
-
+    3.times { button.push }
     assert_equal 3, counter.to_i
 
     button.push
-
     assert_equal 4, counter.to_i
   end
 end
