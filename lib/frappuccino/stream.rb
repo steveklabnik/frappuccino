@@ -4,7 +4,7 @@ require 'frappuccino/inject'
 module Frappuccino
   class Stream
     include Observable
-    
+
     def initialize(*sources)
       sources.each do |source|
         source.extend(Frappuccino::Source).add_observer(self)
@@ -28,13 +28,17 @@ module Frappuccino
         end
       end
     end
-    
+
     def inject(start, &blk)
       Inject.new(self, start, &blk)
     end
 
     def select(&blk)
       Select.new(self, &blk)
+    end
+
+    def zip(stream)
+      Zip.new(self, stream)
     end
 
     def on_value(&blk)
@@ -44,9 +48,9 @@ module Frappuccino
     def self.merge(stream_one, stream_two)
       new(stream_one, stream_two)
     end
-    
+
     protected
-    
+
     def occur(value)
       callbacks.each do |callback|
         callback.call(value)
@@ -60,9 +64,9 @@ module Frappuccino
       @callbacks ||= []
     end
   end
-  
-  private 
-  
+
+  private
+
   class Map < Stream
     def initialize(source, &blk)
       @block = blk
@@ -83,6 +87,31 @@ module Frappuccino
     def update(event)
       if @block.call(event)
         occur(event)
+      end
+    end
+  end
+
+  class Zip < Stream
+    def initialize(left, right)
+      @left_buffer = []
+      @right_buffer = []
+      left.add_observer(self, :left_update)
+      right.add_observer(self, :right_update)
+    end
+
+    def left_update(event)
+      if @right_buffer.length > 0
+        occur([event, @right_buffer.shift])
+      else
+        @left_buffer << event
+      end
+    end
+
+    def right_update(event)
+      if @left_buffer.length > 0
+        occur([@left_buffer.shift, event])
+      else
+        @right_buffer << event
       end
     end
   end
