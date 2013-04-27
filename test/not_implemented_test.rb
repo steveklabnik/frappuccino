@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe "not implemented methods" do
-  [:all].each do |m|
+  [:all?].each do |m|
     it "#{m} is not implemented because it's nonsensical" do
       assert_raises(NotImplementedError) do
         stream = Frappuccino::Stream.new(nil)

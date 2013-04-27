@@ -51,7 +51,7 @@ module Frappuccino
       Zip.new(self, stream)
     end
 
-    def all(&blk)
+    def all?(&blk)
       raise NotImplementedError, "#all doesn't make sense with infinite streams"
     end
 
