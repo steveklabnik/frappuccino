@@ -1,11 +1,11 @@
-require 'frappuccino/source'
-require 'frappuccino/inject'
-
 # before we require all of the subclasses, we need to have Stream defined
 module Frappuccino
   class Stream
   end
 end
+
+require 'frappuccino/source'
+require 'frappuccino/inject'
 
 require 'frappuccino/stream/map'
 require 'frappuccino/stream/select'
@@ -49,6 +49,10 @@ module Frappuccino
 
     def zip(stream)
       Zip.new(self, stream)
+    end
+
+    def all(&blk)
+      raise NotImplementedError, "#all doesn't make sense with infinite streams"
     end
 
     def on_value(&blk)
