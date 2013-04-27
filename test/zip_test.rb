@@ -17,14 +17,14 @@ describe "zip" do
     button1.push
     button2.push
 
-    assert_equal [:pushed, :pushed], occurred, "zipped stream did not propogate events correctly"
+    assert_equal [:pushed, :pushed], occurred, "zipped stream did not propagate events correctly"
 
     occurred = nil
 
     button2.push
     button1.push
 
-    assert_equal [:pushed, :pushed], occurred, "zipped stream did not propogate events correctly"
+    assert_equal [:pushed, :pushed], occurred, "zipped stream did not propagate events correctly"
   end
 
   it "returns a stream that buffers either input stream until the other occurs" do
