@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # before we require all of the subclasses, we need to have Stream defined
 module Frappuccino
   class Stream
