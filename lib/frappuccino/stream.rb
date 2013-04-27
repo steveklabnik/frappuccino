@@ -21,11 +21,15 @@ module Frappuccino
       sources.each do |source|
         source.extend(Frappuccino::Source).add_observer(self)
       end
+
+      @count = 0
     end
 
     def update(event)
       occur(event)
     end
+
+    attr_accessor :count
 
     def map(&blk)
       Map.new(self, &blk)
@@ -80,6 +84,8 @@ module Frappuccino
       callbacks.each do |callback|
         callback.call(value)
       end
+
+      @count += 1
 
       changed
       notify_observers(value)
