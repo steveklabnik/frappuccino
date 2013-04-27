@@ -1,5 +1,7 @@
 require 'test_helper'
 
+require 'frappuccino/stream'
+
 describe "#map_stream" do
   it "maps events to values" do
     plus_button = PlusOneButton.new
