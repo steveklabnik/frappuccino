@@ -61,6 +61,10 @@ module Frappuccino
       raise NotImplementedError, "#any doesn't make sense with infinite streams, it possibly could resolve in ⊥. You probably want #first or #select."
     end
 
+    def chunk(&blk)
+      raise NotImplementedError, "#chunk doesn't make sense with infinite streams"
+    end
+
     def on_value(&blk)
       callbacks << blk
     end
