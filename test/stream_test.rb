@@ -11,5 +11,23 @@ describe Frappuccino::Stream do
 
       assert_equal 1, stream.count
     end
+
+    it "cannot handle the block form" do
+      stream = Frappuccino::Stream.new(nil)
+
+      assert_raises(NotImplementedError) do
+        stream.count do |x|
+          x == 1
+        end
+      end
+    end
+
+    it "cannot handle the one-argument form" do
+      stream = Frappuccino::Stream.new(nil)
+
+      assert_raises(NotImplementedError) do
+        stream.count(1)
+      end
+    end
   end
 end

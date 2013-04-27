@@ -29,7 +29,17 @@ module Frappuccino
       occur(event)
     end
 
-    attr_accessor :count
+    def count(*args)
+      if args.count != 0
+        raise NotImplementedError, "The argument form of #count is not supported, because streams don't save history."
+      end
+
+      if block_given?
+        raise NotImplementedError, "The block form of #count is not supported, because streams don't save history."
+      end
+
+      @count
+    end
 
     def map(&blk)
       Map.new(self, &blk)
