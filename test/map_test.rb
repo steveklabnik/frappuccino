@@ -22,3 +22,13 @@ describe "map" do
     assert_equal 3, count
   end
 end
+
+describe "collect" do
+  it "is a synonym for #map" do
+    stream = Frappuccino::Stream.new(nil)
+    
+    map = stream.collect{|event| 1 }
+
+    assert_kind_of Frappuccino::Map, map
+  end
+end

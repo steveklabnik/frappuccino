@@ -30,6 +30,7 @@ module Frappuccino
     def map(&blk)
       Map.new(self, &blk)
     end
+    alias :collect :map
 
     def map_stream(hsh)
       Map.new(self) do |event|
