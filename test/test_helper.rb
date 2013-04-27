@@ -34,3 +34,13 @@ class Points
   end
 end
 
+class Observer
+  def initialize(&blk)
+    @block = blk
+  end
+
+  def update(value)
+    @block.call(value)
+  end
+end
+
