@@ -1,5 +1,5 @@
 module Frappuccino
-  class Stepper
+  class Property
     def initialize(zero, stream)
       @value = zero
       stream.add_observer(self)

@@ -44,7 +44,7 @@ module Frappuccino
         self
       end
 
-      Stepper.new(0, stream.scan(0) { |last| last + 1 })
+      Property.new(0, stream.scan(0) { |last| last + 1 })
     end
 
     not_implemented(:cycle, "it relies on having a end to the Enumerable")
