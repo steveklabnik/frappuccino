@@ -53,6 +53,8 @@ module Frappuccino
     not_implemented(:any?,  "it could resolve to ⊥. You probably want #select")
     not_implemented(:find,  "it could resolve to ⊥. You probably want #select")
 
+    alias :detect :find
+
     def map(&blk)
       Map.new(self, &blk)
     end
