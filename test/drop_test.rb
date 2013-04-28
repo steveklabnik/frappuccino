@@ -7,8 +7,13 @@ describe "drop" do
     stream = Frappuccino::Stream.new(button)
     dropped_stream = stream.drop(3)
 
+    count = 0
+    dropped_stream.on_value do |value|
+      count += 1
+    end
+
     5.times { button.push }
 
-    assert_equal 2, dropped_stream.count
+    assert_equal 2, count
   end
 end
