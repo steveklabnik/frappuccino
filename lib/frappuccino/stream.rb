@@ -37,16 +37,16 @@ module Frappuccino
       occur(event)
     end
 
-    def count(*args)
-      if args.count != 0
-        raise NotImplementedError, "The argument form of #count is not supported, because streams don't save history."
+    def count(*args, &blk)
+      stream = if args.count > 0
+        self.select { |value| value == args.first }
+      elsif blk
+        self.select { |value| blk.call(value) }
+      else
+        self
       end
 
-      if block_given?
-        raise NotImplementedError, "The block form of #count is not supported, because streams don't save history."
-      end
-
-      @count
+      Stepper.new(0, stream.scan(0) { |last| last + 1 })
     end
 
     not_implemented(:cycle, "it relies on having a end to the Enumerable")
