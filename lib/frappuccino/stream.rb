@@ -48,9 +48,10 @@ module Frappuccino
     end
 
     not_implemented(:cycle, "it relies on having a end to the Enumerable")
-    not_implemented(:all?, "it needs a stream that terminates.")
-    not_implemented(:any?, "it could resolve to ⊥. You probably want #select")
+    not_implemented(:all?,  "it needs a stream that terminates.")
     not_implemented(:chunk, "it needs a stream that terminates.")
+    not_implemented(:any?,  "it could resolve to ⊥. You probably want #select")
+    not_implemented(:find,  "it could resolve to ⊥. You probably want #select")
 
     def map(&blk)
       Map.new(self, &blk)

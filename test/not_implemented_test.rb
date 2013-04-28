@@ -5,6 +5,7 @@ describe "not implemented methods" do
    :any?,
    :chunk,
    :cycle,
+   :find,
   ].each do |m|
     it "#{m} is not implemented because it's nonsensical" do
       assert_raises(NotImplementedError) do
