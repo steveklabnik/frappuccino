@@ -13,6 +13,7 @@ require 'frappuccino/stream/map'
 require 'frappuccino/stream/select'
 require 'frappuccino/stream/zip'
 require 'frappuccino/stream/drop'
+require 'frappuccino/stream/scan'
 
 def not_implemented(m, message)
   define_method m do |*args, &blk|
@@ -28,24 +29,22 @@ module Frappuccino
       sources.each do |source|
         source.extend(Frappuccino::Source).add_observer(self)
       end
-
-      @count = 0
     end
 
     def update(event)
       occur(event)
     end
 
-    def count(*args)
-      if args.count != 0
-        raise NotImplementedError, "The argument form of #count is not supported, because streams don't save history."
+    def count(*args, &blk)
+      stream = if args.count > 0
+        self.select { |value| value == args.first }
+      elsif blk
+        self.select { |value| blk.call(value) }
+      else
+        self
       end
 
-      if block_given?
-        raise NotImplementedError, "The block form of #count is not supported, because streams don't save history."
-      end
-
-      @count
+      Property.new(0, stream.scan(0) { |last| last + 1 })
     end
 
     not_implemented(:cycle, "it relies on having a end to the Enumerable")
@@ -87,6 +86,10 @@ module Frappuccino
       Zip.new(self, stream)
     end
 
+    def scan(zero, &blk)
+      Scan.new(self, zero, &blk)
+    end
+
     def on_value(&blk)
       callbacks << blk
     end
@@ -101,8 +104,6 @@ module Frappuccino
       callbacks.each do |callback|
         callback.call(value)
       end
-
-      @count += 1
 
       changed
       notify_observers(value)

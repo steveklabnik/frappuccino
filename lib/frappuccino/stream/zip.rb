@@ -5,8 +5,6 @@ module Frappuccino
       @right_buffer = []
       left.add_observer(self, :left_update)
       right.add_observer(self, :right_update)
-
-      @count = 0
     end
 
     def left_update(event)
