@@ -13,6 +13,12 @@ require 'frappuccino/stream/map'
 require 'frappuccino/stream/select'
 require 'frappuccino/stream/zip'
 
+def not_implemented(m, message)
+  define_method m do |*args, &blk|
+    raise NotImplementedError, "##{m} is not supported, because #{message}."
+  end
+end
+
 module Frappuccino
   class Stream
     include Observable
@@ -41,10 +47,10 @@ module Frappuccino
       @count
     end
 
-    def cycle
-      raise NotImplementedError, "#cycle is not supported because it relies on having an end to the Enumerable."
-    end
-      
+    not_implemented(:cycle, "it relies on having a end to the Enumerable")
+    not_implemented(:all?, "it needs a stream that terminates.")
+    not_implemented(:any?, "it could resolve to ⊥. You probably want #select")
+    not_implemented(:chunk, "it needs a stream that terminates.")
 
     def map(&blk)
       Map.new(self, &blk)
@@ -71,18 +77,6 @@ module Frappuccino
 
     def zip(stream)
       Zip.new(self, stream)
-    end
-
-    def all?(&blk)
-      raise NotImplementedError, "#all doesn't make sense with infinite streams"
-    end
-
-    def any?(&blk)
-      raise NotImplementedError, "#any doesn't make sense with infinite streams, it possibly could resolve in ⊥. You probably want #first or #select."
-    end
-
-    def chunk(&blk)
-      raise NotImplementedError, "#chunk doesn't make sense with infinite streams"
     end
 
     def on_value(&blk)
