@@ -12,6 +12,7 @@ require 'frappuccino/inject'
 require 'frappuccino/stream/map'
 require 'frappuccino/stream/select'
 require 'frappuccino/stream/zip'
+require 'frappuccino/stream/drop'
 
 def not_implemented(m, message)
   define_method m do |*args, &blk|
@@ -59,6 +60,10 @@ module Frappuccino
       Map.new(self, &blk)
     end
     alias :collect :map
+
+    def drop(n)
+      Drop.new(self, n)
+    end
 
     def map_stream(hsh)
       Map.new(self) do |event|
