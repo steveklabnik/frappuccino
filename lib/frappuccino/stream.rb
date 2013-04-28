@@ -41,6 +41,11 @@ module Frappuccino
       @count
     end
 
+    def cycle
+      raise NotImplementedError, "#cycle is not supported because it relies on having an end to the Enumerable."
+    end
+      
+
     def map(&blk)
       Map.new(self, &blk)
     end
