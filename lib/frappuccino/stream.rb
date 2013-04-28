@@ -29,8 +29,6 @@ module Frappuccino
       sources.each do |source|
         source.extend(Frappuccino::Source).add_observer(self)
       end
-
-      @count = 0
     end
 
     def update(event)
@@ -106,8 +104,6 @@ module Frappuccino
       callbacks.each do |callback|
         callback.call(value)
       end
-
-      @count += 1
 
       changed
       notify_observers(value)

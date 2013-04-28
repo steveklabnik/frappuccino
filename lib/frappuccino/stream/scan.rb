@@ -5,8 +5,6 @@ module Frappuccino
       @block = blk
 
       source.add_observer(self)
-
-      @count = 0
     end
 
     def update(value)
