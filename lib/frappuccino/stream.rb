@@ -13,6 +13,7 @@ require 'frappuccino/stream/map'
 require 'frappuccino/stream/select'
 require 'frappuccino/stream/zip'
 require 'frappuccino/stream/drop'
+require 'frappuccino/stream/scan'
 
 def not_implemented(m, message)
   define_method m do |*args, &blk|
@@ -85,6 +86,10 @@ module Frappuccino
 
     def zip(stream)
       Zip.new(self, stream)
+    end
+
+    def scan(zero, &blk)
+      Scan.new(self, zero, &blk)
     end
 
     def on_value(&blk)
