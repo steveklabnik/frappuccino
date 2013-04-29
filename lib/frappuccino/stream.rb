@@ -55,19 +55,15 @@ module Frappuccino
 
     alias :detect :find
 
-    def map(&blk)
+    def map(hash = nil, &blk)
+      blk = lambda { |event| hash.fetch(event) { hash[:default] } } if hash
       Map.new(self, &blk)
     end
     alias :collect :map
+    alias :map_stream :map
 
     def drop(n)
       Drop.new(self, n)
-    end
-
-    def map_stream(hsh)
-      Map.new(self) do |event|
-        hsh.fetch(event) { hsh[:default] }
-      end
     end
 
     def inject(start, &blk)
