@@ -62,7 +62,7 @@ counter.to_i # => 4
 You can also map via a hash, if you prefer:
 
 ```ruby
-.map_stream(:pushed => 1, :default => 0)
+.map(:pushed => 1, :default => 0)
 ```
 
 Rather than convert via `#to_i`, which is pretty much a hack, you can register
