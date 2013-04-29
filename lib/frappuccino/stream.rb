@@ -66,11 +66,7 @@ module Frappuccino
 
     def map_stream(hsh)
       Map.new(self) do |event|
-        if hsh.has_key?(event)
-          hsh[event]
-        else
-          hsh[:default]
-        end
+        hsh.fetch(event) { hsh[:default] }
       end
     end
 
