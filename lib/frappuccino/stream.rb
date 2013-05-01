@@ -14,6 +14,7 @@ require 'frappuccino/stream/select'
 require 'frappuccino/stream/zip'
 require 'frappuccino/stream/drop'
 require 'frappuccino/stream/scan'
+require 'frappuccino/stream/take'
 
 def not_implemented(m, message)
   define_method m do |*args, &blk|
@@ -64,6 +65,10 @@ module Frappuccino
 
     def drop(n)
       Drop.new(self, n)
+    end
+
+    def take(n)
+      Take.new(self, n)
     end
 
     def inject(start, &blk)
