@@ -5,7 +5,7 @@ describe "Property" do
     it "returns the current 'last' value of the Stream" do
       button = Button.new
       stream = Frappuccino::Stream.new(button)
-      stepper = Frappuccino::Property.new(:not_pushed, button)
+      stepper = Frappuccino::Property.new(:not_pushed, stream)
 
       button.push
       assert_equal :pushed, stepper.now
