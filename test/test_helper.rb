@@ -34,6 +34,17 @@ class Points
   end
 end
 
+class CounterButton
+  def initialize
+    @count = 0
+  end
+
+  def push
+    emit(@count)
+    @count += 1
+  end
+end
+
 class Observer
   def initialize(&blk)
     @block = blk
