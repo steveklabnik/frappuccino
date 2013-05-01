@@ -7,8 +7,10 @@ module Frappuccino
     end
 
     def update(value)
-      occur(value) if @length < @n
-      @length += 1
+      if @length < @n
+        occur(value)
+        @length += 1
+      end
     end
   end
 end
