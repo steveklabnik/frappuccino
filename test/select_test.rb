@@ -9,7 +9,7 @@ describe "#select" do
 
     filtered_stream = stream
                         .select{|event| event == :POINTS! }
-                        .inject(0) {|sum, event| sum += 1 }
+                        .scan(0) {|sum, event| sum += 1 }
 
     total = 0
 
@@ -42,7 +42,7 @@ describe "#select" do
     points.POINTS!
     points.POINTS!
     button.push
-    
+
     assert_equal 2, count
   end
 end

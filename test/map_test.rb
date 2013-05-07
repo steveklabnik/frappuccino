@@ -34,10 +34,10 @@ describe "map" do
               .map(:+ => 1, :- => -1, :default => 0)
               .inject(0) {|sum, n| sum + n }
 
-    assert_equal 0, counter.to_i
+    assert_equal 0, counter.now
 
     plus_button.push
-    assert_equal 1, counter.to_i
+    assert_equal 1, counter.now
   end
 
   it "respects the default value of the hash" do
@@ -52,11 +52,11 @@ describe "map" do
               .map(:default => 1)
               .inject(0) {|sum, n| sum + n }
 
-    assert_equal 0, counter.to_i
+    assert_equal 0, counter.now
 
     plus_button.push
     minus_button.push
-    assert_equal 2, counter.to_i
+    assert_equal 2, counter.now
   end
 end
 

@@ -16,7 +16,7 @@ describe "merging steams" do
     button_one.push
     button_two.push
 
-    assert_equal 2, counter.to_i
+    assert_equal 2, counter.now
   end
 
   it "+1/-1" do
@@ -40,18 +40,18 @@ describe "merging steams" do
               end
               .inject(0) {|sum, n| sum + n }
 
-    assert_equal 0, counter.to_i
+    assert_equal 0, counter.now
 
     plus_button.push
-    assert_equal 1, counter.to_i
+    assert_equal 1, counter.now
 
     minus_button.push
-    assert_equal 0, counter.to_i
+    assert_equal 0, counter.now
 
     2.times { minus_button.push }
-    assert_equal(-2, counter.to_i)
+    assert_equal(-2, counter.now)
 
     4.times { plus_button.push }
-    assert_equal 2, counter.to_i
+    assert_equal 2, counter.now
   end
 end

@@ -7,7 +7,6 @@ module Frappuccino
 end
 
 require 'frappuccino/source'
-require 'frappuccino/inject'
 
 require 'frappuccino/stream/map'
 require 'frappuccino/stream/select'
@@ -72,7 +71,7 @@ module Frappuccino
     end
 
     def inject(start, &blk)
-      Inject.new(self, start, &blk)
+      Property.new(start, self.scan(start, &blk))
     end
 
     def select(&blk)
