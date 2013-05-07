@@ -7,16 +7,12 @@ describe "merging steams" do
 
     stream_one = Frappuccino::Stream.new(button_one)
     stream_two = Frappuccino::Stream.new(button_two)
-
-    merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
-    counter = merged_stream
-              .map {|event| event == :pushed ? 1 : 0 }
-              .inject(0) {|sum, n| sum + n }
+    merged_stream = to_array(Frappuccino::Stream.merge(stream_one, stream_two))
 
     button_one.push
     button_two.push
 
-    assert_equal 2, counter.now
+    assert_equal 2, merged_stream.length
   end
 
   it "+1/-1" do

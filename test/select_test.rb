@@ -7,21 +7,13 @@ describe "#select" do
 
     stream = Frappuccino::Stream.new(points, button)
 
-    filtered_stream = stream
-                        .select{|event| event == :POINTS! }
-                        .scan(0) {|sum, event| sum += 1 }
-
-    total = 0
-
-    filtered_stream.on_value do |event|
-      total = event
-    end
+    filtered_stream = to_array(stream.select{|event| event == :POINTS! })
 
     9.times { points.POINTS! }
-
     9.times { button.push }
 
-    assert_equal 9, total
+    assert_equal 9, filtered_stream.length
+    assert_equal true, filtered_stream.all? { |event| event == :POINTS! }
   end
 
   it "has #on_value" do
