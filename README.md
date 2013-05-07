@@ -2,7 +2,7 @@
 
 Functional Reactive Programming for Ruby.
 
-[![Build Status](https://travis-ci.org/steveklabnik/frappuccino.png?branch=master)](https://travis-ci.org/steveklabnik/frappuccino) [![Code Climate](https://codeclimate.com/github/steveklabnik/frappuccino.png)](https://codeclimate.com/github/steveklabnik/frappuccino) [![Coverage Status](https://coveralls.io/repos/steveklabnik/frappuccino/badge.png?branch=master)](https://coveralls.io/r/steveklabnik/frappuccino) 
+[![Build Status](https://travis-ci.org/steveklabnik/frappuccino.png?branch=master)](https://travis-ci.org/steveklabnik/frappuccino) [![Code Climate](https://codeclimate.com/github/steveklabnik/frappuccino.png)](https://codeclimate.com/github/steveklabnik/frappuccino) [![Coverage Status](https://coveralls.io/repos/steveklabnik/frappuccino/badge.png?branch=master)](https://coveralls.io/r/steveklabnik/frappuccino)
 
 ## Installation
 
@@ -46,17 +46,17 @@ counter = stream
             .map {|event| event == :pushed ? 1 : 0 } # convert events to ints
             .inject(0) {|sum, n| sum + n } # add them up
 
-counter.to_i # => 0
+counter.now # => 0
 
 button.push
 button.push
 button.push
 
-counter.to_i # => 3
+counter.now # => 3
 
 button.push
 
-counter.to_i # => 4
+counter.now # => 4
 ```
 
 You can also map via a hash, if you prefer:
@@ -65,8 +65,8 @@ You can also map via a hash, if you prefer:
 .map(:pushed => 1, :default => 0)
 ```
 
-Rather than convert via `#to_i`, which is pretty much a hack, you can register
-a callback to occur when a value hits the stream:
+You can also register callbacks to a Stream. These will executed for
+each event that occurs in the Stream:
 
 ```ruby
 stream.on_value do |event|
