@@ -1,19 +1,19 @@
 # encoding: utf-8
 
 # before we require all of the subclasses, we need to have Stream defined
-module Frppuccino
+module Frappuccino
   class Stream
   end
 end
 
-require 'frppuccino/source'
+require 'frappuccino/source'
 
-require 'frppuccino/stream/map'
-require 'frppuccino/stream/select'
-require 'frppuccino/stream/zip'
-require 'frppuccino/stream/drop'
-require 'frppuccino/stream/scan'
-require 'frppuccino/stream/take'
+require 'frappuccino/stream/map'
+require 'frappuccino/stream/select'
+require 'frappuccino/stream/zip'
+require 'frappuccino/stream/drop'
+require 'frappuccino/stream/scan'
+require 'frappuccino/stream/take'
 
 def not_implemented(m, message)
   define_method m do |*args, &blk|
@@ -21,13 +21,13 @@ def not_implemented(m, message)
   end
 end
 
-module Frppuccino
+module Frappuccino
   class Stream
     include Observable
 
     def initialize(*sources)
       sources.each do |source|
-        source.extend(Frppuccino::Source).add_observer(self)
+        source.extend(Frappuccino::Source).add_observer(self)
       end
     end
 

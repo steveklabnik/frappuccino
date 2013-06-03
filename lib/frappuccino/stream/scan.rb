@@ -1,4 +1,4 @@
-module Frppuccino
+module Frappuccino
   class Scan < Stream
     def initialize(source, zero, &blk)
       @last = zero

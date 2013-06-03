@@ -4,7 +4,7 @@ describe "Source" do
   describe "#emit" do
     it "notifies observers" do
       pushed = nil
-      source = Object.new.extend(Frppuccino::Source)
+      source = Object.new.extend(Frappuccino::Source)
       source.add_observer(Observer.new { |value| pushed = value })
       source.emit("EVENT!")
 

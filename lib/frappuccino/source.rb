@@ -1,6 +1,6 @@
 require 'observer'
 
-module Frppuccino
+module Frappuccino
   module Source
     def self.extended(object)
       object.extend(Observable)

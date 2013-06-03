@@ -1,10 +1,10 @@
 require 'test_helper'
 
-describe Frppuccino::Stream do
+describe Frappuccino::Stream do
   describe "#count" do
     it "returns a Stepper that's value is the current length of the Stream" do
       button = Button.new
-      stream = Frppuccino::Stream.new(button)
+      stream = Frappuccino::Stream.new(button)
       count = stream.count
 
       assert_equal 0, count.now
@@ -15,7 +15,7 @@ describe Frppuccino::Stream do
 
     it "it only counts matching items if an argument is passed" do
       button = Button.new
-      stream = Frppuccino::Stream.new(button)
+      stream = Frappuccino::Stream.new(button)
       count = stream.count(1)
 
       assert_equal 0, count.now
@@ -29,7 +29,7 @@ describe Frppuccino::Stream do
 
     it "it only counts the matching item if a block is given" do
       button = Button.new
-      stream = Frppuccino::Stream.new(button)
+      stream = Frappuccino::Stream.new(button)
       count = stream.count { |i| i > 1 }
 
       assert_equal 0, count.now

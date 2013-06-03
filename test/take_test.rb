@@ -3,7 +3,7 @@ require 'test_helper'
 describe "take" do
   it "returns a Stream that only contains n elements" do
     button = CounterButton.new
-    stream = Frppuccino::Stream.new(button)
+    stream = Frappuccino::Stream.new(button)
     taken_stream = to_array(stream.take(2))
 
     3.times { button.push }

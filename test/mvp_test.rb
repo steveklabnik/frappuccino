@@ -1,11 +1,11 @@
 require 'test_helper'
 
-require 'frppuccino'
+require 'frappuccino'
 
 describe "MVP interaction" do
   it "can subscribe to an event stream" do
     button = Button.new
-    stream = Frppuccino::Stream.new(button)
+    stream = Frappuccino::Stream.new(button)
 
     counter = stream
               .map {|event| event == :pushed ? 1 : 0 }

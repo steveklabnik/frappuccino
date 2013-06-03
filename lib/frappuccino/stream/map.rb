@@ -1,4 +1,4 @@
-module Frppuccino
+module Frappuccino
   class Map < Stream
     def initialize(source, &blk)
       @block = blk

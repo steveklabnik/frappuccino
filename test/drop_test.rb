@@ -3,7 +3,7 @@ require 'test_helper'
 describe "drop" do
   it "ignores the first n events" do
     button = CounterButton.new
-    stream = Frppuccino::Stream.new(button)
+    stream = Frappuccino::Stream.new(button)
     dropped_stream = to_array(stream.drop(3))
 
     5.times { button.push }

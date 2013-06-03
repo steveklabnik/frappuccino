@@ -10,7 +10,7 @@ describe "not implemented methods" do
   ].each do |m|
     it "#{m} is not implemented because it's nonsensical" do
       assert_raises(NotImplementedError) do
-        stream = Frppuccino::Stream.new(nil)
+        stream = Frappuccino::Stream.new(nil)
         stream.send(m)
       end
     end
