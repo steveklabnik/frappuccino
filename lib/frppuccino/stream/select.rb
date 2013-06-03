@@ -1,4 +1,4 @@
-module Frappuccino
+module Frppuccino
   class Select < Stream
     def initialize(source, &blk)
       @block = blk

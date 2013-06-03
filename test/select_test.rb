@@ -5,7 +5,7 @@ describe "#select" do
     points = Points.new
     button = Button.new
 
-    stream = Frappuccino::Stream.new(points, button)
+    stream = Frppuccino::Stream.new(points, button)
 
     filtered_stream = to_array(stream.select{|event| event == :POINTS! })
 
@@ -20,7 +20,7 @@ describe "#select" do
     points = Points.new
     button = Button.new
 
-    stream = Frappuccino::Stream.new(points, button)
+    stream = Frppuccino::Stream.new(points, button)
 
     filtered_stream = stream
                         .select{|event| event == :POINTS! }

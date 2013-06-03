@@ -1,4 +1,4 @@
-module Frappuccino
+module Frppuccino
   class Drop < Stream
     def initialize(source, n)
       source.add_observer(self)

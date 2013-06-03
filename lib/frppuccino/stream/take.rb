@@ -1,4 +1,4 @@
-module Frappuccino
+module Frppuccino
   class Take < Stream
     def initialize(source, n)
       @n = n

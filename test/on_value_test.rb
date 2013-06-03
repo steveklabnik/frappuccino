@@ -3,7 +3,7 @@ require 'test_helper'
 describe "#on_value" do
   it "calls the block on a value" do
     button = Button.new
-    stream = Frappuccino::Stream.new(button)
+    stream = Frppuccino::Stream.new(button)
 
     event = false
 
@@ -18,7 +18,7 @@ describe "#on_value" do
 
   it "allows for multiple callbacks per Stream" do
     button = Button.new
-    stream = Frappuccino::Stream.new(button)
+    stream = Frppuccino::Stream.new(button)
 
     callback1 = false
     callback2 = false
@@ -39,7 +39,7 @@ describe "#on_value" do
 
   it "works with mapped Streams" do
     button = Button.new
-    stream = Frappuccino::Stream.new(button)
+    stream = Frppuccino::Stream.new(button)
 
     callback = false
 
@@ -54,7 +54,7 @@ describe "#on_value" do
 
   it "works with filtered Streams" do
     button = Button.new
-    stream = Frappuccino::Stream.new(button)
+    stream = Frppuccino::Stream.new(button)
 
     callback = false
     should = true

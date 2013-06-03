@@ -1,19 +1,16 @@
-# Frappuccino
+# Frppuccino
 
 Functional Reactive Programming for Ruby.
 
-[![Build Status](https://travis-ci.org/steveklabnik/frappuccino.png?branch=master)](https://travis-ci.org/steveklabnik/frappuccino) [![Code Climate](https://codeclimate.com/github/steveklabnik/frappuccino.png)](https://codeclimate.com/github/steveklabnik/frappuccino) [![Coverage Status](https://coveralls.io/repos/steveklabnik/frappuccino/badge.png?branch=master)](https://coveralls.io/r/steveklabnik/frappuccino)
+[![Build Status](https://travis-ci.org/steveklabnik/frppuccino.png?branch=master)](https://travis-ci.org/steveklabnik/frppuccino) [![Code Climate](https://codeclimate.com/github/steveklabnik/frppuccino.png)](https://codeclimate.com/github/steveklabnik/frppuccino) [![Coverage Status](https://coveralls.io/repos/steveklabnik/frppuccino/badge.png?branch=master)](https://coveralls.io/r/steveklabnik/frppuccino)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'frappuccino', github: "steveklabnik/frappuccino"
+gem 'frppuccino'
 ```
-
-(I'm hoping that @yoka will give me the gem name, until then, you
-must install from GitHub.)
 
 And then execute:
 
@@ -21,8 +18,8 @@ And then execute:
 
 Or install it yourself as:
 
-    $ git clone https://github.com/steveklabnik/frappuccino
-    $ cd frappuccino
+    $ git clone https://github.com/steveklabnik/frppuccino
+    $ cd frppuccino
     $ bundle
     $ rake install
 
@@ -31,7 +28,7 @@ Or install it yourself as:
 Basically, this:
 
 ```ruby
-require 'frappuccino'
+require 'frppuccino'
 
 class Button
   def push
@@ -40,7 +37,7 @@ class Button
 end
 
 button = Button.new
-stream = Frappuccino::Stream.new(button)
+stream = Frppuccino::Stream.new(button)
 
 counter = stream
             .map {|event| event == :pushed ? 1 : 0 } # convert events to ints
@@ -77,17 +74,17 @@ end
 You can combine two streams together:
 
 ```ruby
-merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+merged_stream = Frppuccino::Stream.merge(stream_one, stream_two)
 
 # or
 
-merged_stream = Frappuccino::Stream.new(button_one, button_two)
+merged_stream = Frppuccino::Stream.new(button_one, button_two)
 ```
 
 You can select events from a stream, too:
 
 ```ruby
-stream = Frappuccino::Stream.new(button, something_else)
+stream = Frppuccino::Stream.new(button, something_else)
 filtered_stream = stream.select{|event| event == :pushed }
 
 filtered_stream.on_value do |event|

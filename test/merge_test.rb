@@ -5,9 +5,9 @@ describe "merging steams" do
     button_one = Button.new
     button_two = Button.new
 
-    stream_one = Frappuccino::Stream.new(button_one)
-    stream_two = Frappuccino::Stream.new(button_two)
-    merged_stream = to_array(Frappuccino::Stream.merge(stream_one, stream_two))
+    stream_one = Frppuccino::Stream.new(button_one)
+    stream_two = Frppuccino::Stream.new(button_two)
+    merged_stream = to_array(Frppuccino::Stream.merge(stream_one, stream_two))
 
     button_one.push
     button_two.push
@@ -19,10 +19,10 @@ describe "merging steams" do
     plus_button = PlusOneButton.new
     minus_button = MinusOneButton.new
 
-    stream_one = Frappuccino::Stream.new(plus_button)
-    stream_two = Frappuccino::Stream.new(minus_button)
+    stream_one = Frppuccino::Stream.new(plus_button)
+    stream_two = Frppuccino::Stream.new(minus_button)
 
-    merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+    merged_stream = Frppuccino::Stream.merge(stream_one, stream_two)
     counter = merged_stream
               .map do |event|
                 case event

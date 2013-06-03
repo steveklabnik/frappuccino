@@ -1,3 +1,3 @@
-module Frappuccino
+module Frppuccino
   VERSION = "0.0.1"
 end

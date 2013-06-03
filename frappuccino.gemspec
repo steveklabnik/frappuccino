@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'frappuccino/version'
+require 'frppuccino/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "frappuccino"
-  spec.version       = Frappuccino::VERSION
+  spec.name          = "frppuccino"
+  spec.version       = Frppuccino::VERSION
   spec.authors       = ["Steve Klabnik"]
   spec.email         = ["steve@steveklabnik.com"]
   spec.description   = %q{A library to do Functional Reactive Programming in Ruby.}
   spec.summary       = %q{Functional Reactive Programming in Ruby.}
-  spec.homepage      = "https://github.com/steveklabnik/frappuccino"
+  spec.homepage      = "https://github.com/steveklabnik/frppuccino"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

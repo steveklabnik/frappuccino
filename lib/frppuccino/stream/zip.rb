@@ -1,4 +1,4 @@
-module Frappuccino
+module Frppuccino
   class Zip < Stream
     def initialize(left, right)
       @left_buffer = []

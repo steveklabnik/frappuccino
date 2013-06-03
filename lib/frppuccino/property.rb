@@ -1,4 +1,4 @@
-module Frappuccino
+module Frppuccino
   class Property
     def initialize(zero, stream)
       @value = zero

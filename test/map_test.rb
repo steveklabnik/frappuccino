@@ -4,7 +4,7 @@ describe "map" do
   it "can take callbacks" do
     button = Button.new
 
-    stream = Frappuccino::Stream.new(button)
+    stream = Frppuccino::Stream.new(button)
 
     filtered_stream = stream
                         .map{|event| 1 }
@@ -26,10 +26,10 @@ describe "map" do
     plus_button = PlusOneButton.new
     minus_button = MinusOneButton.new
 
-    stream_one = Frappuccino::Stream.new(plus_button)
-    stream_two = Frappuccino::Stream.new(minus_button)
+    stream_one = Frppuccino::Stream.new(plus_button)
+    stream_two = Frppuccino::Stream.new(minus_button)
 
-    merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+    merged_stream = Frppuccino::Stream.merge(stream_one, stream_two)
     mapped_stream = to_array(merged_stream.map(:+ => 1, :- => -1, :default => 0))
 
     assert_equal [], mapped_stream
@@ -45,10 +45,10 @@ describe "map" do
     plus_button = PlusOneButton.new
     minus_button = MinusOneButton.new
 
-    stream_one = Frappuccino::Stream.new(plus_button)
-    stream_two = Frappuccino::Stream.new(minus_button)
+    stream_one = Frppuccino::Stream.new(plus_button)
+    stream_two = Frppuccino::Stream.new(minus_button)
 
-    merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+    merged_stream = Frppuccino::Stream.merge(stream_one, stream_two)
     mapped_stream = to_array(merged_stream.map(:default => 1))
 
     assert_equal [], mapped_stream
@@ -61,20 +61,20 @@ end
 
 describe "collect" do
   it "is a synonym for #map" do
-    stream = Frappuccino::Stream.new(nil)
+    stream = Frppuccino::Stream.new(nil)
 
     map = stream.collect{|event| 1 }
 
-    assert_kind_of Frappuccino::Map, map
+    assert_kind_of Frppuccino::Map, map
   end
 end
 
 describe "#map_stream" do
   it "is a synonym for #map" do
-    stream = Frappuccino::Stream.new(nil)
+    stream = Frppuccino::Stream.new(nil)
 
     map = stream.map_stream(:default => 1)
 
-    assert_kind_of Frappuccino::Map, map
+    assert_kind_of Frppuccino::Map, map
   end
 end

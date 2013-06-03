@@ -3,9 +3,9 @@ require 'test_helper'
 describe "zip" do
   it "returns a stream where the events are tuples of corresponding events" do
     button1 = CounterButton.new(0)
-    stream1 = Frappuccino::Stream.new(button1)
+    stream1 = Frppuccino::Stream.new(button1)
     button2 = CounterButton.new(10)
-    stream2 = Frappuccino::Stream.new(button2)
+    stream2 = Frppuccino::Stream.new(button2)
 
 
     zipped_stream = to_array(stream1.zip(stream2))
@@ -21,9 +21,9 @@ describe "zip" do
 
   it "returns a stream that buffers the left input stream" do
     button1 = CounterButton.new(0)
-    stream1 = Frappuccino::Stream.new(button1)
+    stream1 = Frppuccino::Stream.new(button1)
     button2 = CounterButton.new(10)
-    stream2 = Frappuccino::Stream.new(button2)
+    stream2 = Frppuccino::Stream.new(button2)
 
     zipped_stream = to_array(stream1.zip(stream2))
 
@@ -43,9 +43,9 @@ describe "zip" do
 
   it "returns a stream that buffers the right input stream" do
     button1 = CounterButton.new(0)
-    stream1 = Frappuccino::Stream.new(button1)
+    stream1 = Frppuccino::Stream.new(button1)
     button2 = CounterButton.new(10)
-    stream2 = Frappuccino::Stream.new(button2)
+    stream2 = Frppuccino::Stream.new(button2)
 
     zipped_stream = to_array(stream1.zip(stream2))
 
