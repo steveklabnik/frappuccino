@@ -9,11 +9,8 @@ Functional Reactive Programming for Ruby.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'frappuccino', github: "steveklabnik/frappuccino"
+gem 'frappuccino'
 ```
-
-(I'm hoping that @yoka will give me the gem name, until then, you
-must install from GitHub.)
 
 And then execute:
 
