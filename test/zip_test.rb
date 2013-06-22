@@ -27,7 +27,7 @@ describe "zip" do
 
     zipped_stream = to_array(stream1.zip(stream2))
 
-    2.times do |i|
+    2.times do
       button1.push
       assert_equal [], zipped_stream, "zipped stream occurred too early"
     end
@@ -49,7 +49,7 @@ describe "zip" do
 
     zipped_stream = to_array(stream1.zip(stream2))
 
-    2.times do |i|
+    2.times do
       button2.push
       assert_equal [], zipped_stream, "zipped stream occurred too early"
     end
