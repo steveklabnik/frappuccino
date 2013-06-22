@@ -74,7 +74,11 @@ end
 You can combine two streams together:
 
 ```ruby
-merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+merged_stream = stream_one.merge(stream_two)
+
+# or
+
+merged_stream = Frappuccino::Stream.merge(one_stream , other_stream)
 
 # or
 

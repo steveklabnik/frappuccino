@@ -90,6 +90,10 @@ module Frappuccino
       callbacks << blk
     end
 
+    def merge(another_stream)
+      self.class.new(self, another_stream)
+    end
+
     def self.merge(stream_one, stream_two)
       new(stream_one, stream_two)
     end

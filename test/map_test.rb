@@ -29,7 +29,7 @@ describe "map" do
     stream_one = Frappuccino::Stream.new(plus_button)
     stream_two = Frappuccino::Stream.new(minus_button)
 
-    merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+    merged_stream = stream_one.merge(stream_two)
     mapped_stream = to_array(merged_stream.map(:+ => 1, :- => -1, :default => 0))
 
     assert_equal [], mapped_stream
@@ -48,7 +48,7 @@ describe "map" do
     stream_one = Frappuccino::Stream.new(plus_button)
     stream_two = Frappuccino::Stream.new(minus_button)
 
-    merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+    merged_stream = stream_one.merge(stream_two)
     mapped_stream = to_array(merged_stream.map(:default => 1))
 
     assert_equal [], mapped_stream
