@@ -7,7 +7,7 @@ describe "merging steams" do
 
     stream_one = Frappuccino::Stream.new(button_one)
     stream_two = Frappuccino::Stream.new(button_two)
-    merged_stream = to_array(Frappuccino::Stream.merge(stream_one, stream_two))
+    merged_stream = to_array(stream_one.merge(stream_two))
 
     button_one.push
     button_two.push
@@ -21,8 +21,7 @@ describe "merging steams" do
 
     stream_one = Frappuccino::Stream.new(plus_button)
     stream_two = Frappuccino::Stream.new(minus_button)
-
-    merged_stream = Frappuccino::Stream.merge(stream_one, stream_two)
+    merged_stream = stream_one.merge(stream_two)
     counter = merged_stream
               .map do |event|
                 case event
@@ -49,5 +48,22 @@ describe "merging steams" do
 
     4.times { plus_button.push }
     assert_equal 2, counter.now
+  end
+end
+
+
+describe "merging stream with Frappuccino::Stream#merge" do
+  it "produces one stream with both sets of events" do
+    button_one = Button.new
+    button_two = Button.new
+
+    stream_one = Frappuccino::Stream.new(button_one)
+    stream_two = Frappuccino::Stream.new(button_two)
+    merged_stream = to_array(Frappuccino::Stream.merge(stream_one, stream_two))
+
+    button_one.push
+    button_two.push
+
+    assert_equal 2, merged_stream.length
   end
 end
