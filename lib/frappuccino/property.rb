@@ -12,5 +12,11 @@ module Frappuccino
     def update(value)
       @value = value
     end
+
+    def sample(stream)
+      stream.map do
+        self.now
+      end
+    end
   end
 end
