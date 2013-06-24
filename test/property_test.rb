@@ -21,22 +21,26 @@ describe "Property" do
   end
 
   describe "#sample" do
-    it "returns a Stream of samples at the passed Stream's times" do
-      counter = CounterButton.new(1)
-      stream = Frappuccino::Stream.new(counter)
+    before do
+      @counter = CounterButton.new(1)
+      stream = Frappuccino::Stream.new(@counter)
       prop = Frappuccino::Property.new(0, stream)
 
-      button = Button.new
-      samples = to_array(prop.sample(Frappuccino::Stream.new(button)))
+      @sampler = Button.new
+      @samples = to_array(prop.sample(Frappuccino::Stream.new(@sampler)))
+    end
 
-      assert_equal samples, []
+    it "has no occurrences initally" do
+      assert_equal @samples, []
+    end
 
-      button.push
-      assert_equal samples, [0]
+    it "samples the Property when the passed Stream occurs" do
+      @sampler.push
+      assert_equal @samples, [0]
 
-      counter.push
-      button.push
-      assert_equal samples, [0, 1]
+      @counter.push
+      @sampler.push
+      assert_equal @samples, [0, 1]
     end
   end
 end
