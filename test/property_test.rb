@@ -43,4 +43,19 @@ describe "Property" do
       assert_equal @samples, [0, 1]
     end
   end
+
+  describe "#map" do
+    it "creates a Property with a mapped value of the original" do
+      button = CounterButton.new(1)
+      stream = Frappuccino::Stream.new(button)
+      prop = Frappuccino::Property.new("0", stream).map do |v|
+        v.to_s
+      end
+
+      5.times do |i|
+        assert_equal i.to_s, prop.now
+        button.push
+      end
+    end
+  end
 end
