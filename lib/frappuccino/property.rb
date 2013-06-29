@@ -27,5 +27,9 @@ module Frappuccino
     def map(&blk)
       MapProperty.new(self, &blk)
     end
+
+    def to_ary
+      [now]
+    end
   end
 end
