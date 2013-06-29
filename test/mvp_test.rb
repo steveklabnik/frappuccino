@@ -10,13 +10,14 @@ describe "MVP interaction" do
     counter = stream
               .map {|event| event == :pushed ? 1 : 0 }
               .inject(0) {|sum, n| sum + n }
+              .map { |val| val.to_s }
 
-    assert_equal 0, counter.now
+    assert_equal "0", counter.now
 
     3.times { button.push }
-    assert_equal 3, counter.now
+    assert_equal "3", counter.now
 
     button.push
-    assert_equal 4, counter.now
+    assert_equal "4", counter.now
   end
 end
