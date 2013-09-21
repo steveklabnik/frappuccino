@@ -5,4 +5,8 @@ describe "lift" do
     prop = Frappuccino.lift("Property")
     assert_equal("Property", prop.now)
   end
+
+  it "is automatically applied to any Object" do
+    assert_equal("Property", "Property".now)
+  end
 end
