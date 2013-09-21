@@ -1,5 +1,5 @@
 module Frappuccino
-  class UntilProperty
+  class UntilProperty < Property
     def initialize(first, switcher, second)
       @first = first
       @second = second
