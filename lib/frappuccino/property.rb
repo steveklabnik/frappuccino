@@ -4,6 +4,7 @@ module Frappuccino
 end
 
 require 'frappuccino/property/map_property'
+require 'frappuccino/property/until_property'
 
 module Frappuccino
   class Property
@@ -22,6 +23,10 @@ module Frappuccino
       stream.map do
         self.now
       end
+    end
+
+    def until(stream, property)
+      UntilProperty.new(self, stream, property)
     end
 
     def map(&blk)
