@@ -91,7 +91,7 @@ module Frappuccino
     end
 
     def merge(another_stream)
-      self.class.new(self, another_stream)
+      Stream.new(self, another_stream)
     end
 
     def self.merge(stream_one, stream_two)
