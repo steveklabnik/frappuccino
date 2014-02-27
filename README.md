@@ -14,14 +14,18 @@ gem 'frappuccino'
 
 And then execute:
 
-    $ bundle
+``` sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ git clone https://github.com/steveklabnik/frappuccino
-    $ cd frappuccino
-    $ bundle
-    $ rake install
+``` sh
+$ git clone https://github.com/steveklabnik/frappuccino
+$ cd frappuccino
+$ bundle
+$ rake install
+```
 
 ## Usage
 
