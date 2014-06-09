@@ -49,6 +49,18 @@ describe "merging steams" do
     4.times { plus_button.push }
     assert_equal 2, counter.now
   end
+  
+  it "works if the callee has a different constructor from Stream" do
+    button_one = Button.new
+    button_two = Button.new
+
+    stream_one = Frappuccino::Stream.new(button_one).map { 0 }
+    stream_two = Frappuccino::Stream.new(button_two)
+    
+    # This would explode if the merge was calling
+    # self.class.new rather than Stream.new
+    stream_one.merge(stream_two)
+  end
 end
 
 
