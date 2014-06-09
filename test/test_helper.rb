@@ -19,6 +19,10 @@ def to_array(stream)
   pushed
 end
 
+def to_prop(ini, stream)
+  Frappuccino::Property.new(ini, stream)
+end
+
 class Button
   def push
     emit(:pushed)
