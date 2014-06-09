@@ -9,10 +9,13 @@ require 'frappuccino/property/toggle_property'
 
 module Frappuccino
   class Property
-    def initialize(zero, stream)
+    def initialize(zero, stream = nil)
       @value = zero
-      stream.on_value do |value|
-        @value = value
+
+      if stream
+        stream.on_value do |value|
+          @value = value
+        end
       end
     end
 
