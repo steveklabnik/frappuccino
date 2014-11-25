@@ -73,6 +73,7 @@ module Frappuccino
     def inject(start, &blk)
       Property.new(start, self.scan(start, &blk))
     end
+    alias :reduce :inject
 
     def select(&blk)
       Select.new(self, &blk)
