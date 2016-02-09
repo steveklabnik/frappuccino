@@ -66,7 +66,7 @@ You can also map via a hash, if you prefer:
 .map(:pushed => 1, :default => 0)
 ```
 
-You can also register callbacks to a Stream. These will executed for
+You can also register callbacks to a Stream. These will be executed for
 each event that occurs in the Stream:
 
 ```ruby
